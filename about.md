@@ -1,8 +1,5 @@
 ---
 layout: page
-title: About
----
-
----
+title: Sobre mi
 redirect: https://llamasdev.github.io/modern-resume-theme/
 ---
