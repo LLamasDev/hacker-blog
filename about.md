@@ -3,4 +3,6 @@ layout: page
 title: About
 ---
 
-Something about me.
+---
+redirect: https://llamasdev.github.io/modern-resume-theme/
+---

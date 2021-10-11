@@ -66,7 +66,7 @@ grep --color=auto -i python
 ```
 
 Por lo cual en el filtro mostraremos todo menos lo que queremos, en nuestro caso no queremos ver nada de ventanas (**screen**) ni el **grep** y lo añadimos separándolos con **\\|**, también se puede usar **|**, pero si se añade **-E** al **grep**:  
--v filtra por todo menos por lo indicado a continuación.
+**-v** filtra por todo menos por lo indicado a continuación.
 ```
 grep -v "SCREEN\|grep"
 ```
