@@ -7,6 +7,7 @@ published: true
 
 ![](https://raw.githubusercontent.com/LLamasDev/hacker-blog/master/assets/bash-logo.png)
 
+
 ### [](#header-3)Comillas dobles "
 
 La protección es simple, eliminan el significado de todos los caracteres especiales del shell excepto **$**, **$()**, **\\** y a sí mismas.
@@ -14,7 +15,7 @@ La protección es simple, eliminan el significado de todos los caracteres especi
 echo "Hola, estoy en $(pwd)"
 Hola, estoy en /
 ```
-  
+
 ### [](#header-3)Comillas simples '
 
 Las comillas simples eliminan el significado a todos los caracteres especiales del shell.

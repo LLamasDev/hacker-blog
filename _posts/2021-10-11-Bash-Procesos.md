@@ -7,6 +7,7 @@ published: true
 
 ![](https://raw.githubusercontent.com/LLamasDev/hacker-blog/master/assets/bash-logo.png)
 
+
 ### [](#header-3)Posibles errores al ejecutar el script
 
 Convierte los saltos de línea de formato DOS a UNIX.  
