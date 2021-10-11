@@ -5,7 +5,7 @@ published: true
 
 ### [](#header-1)Caracteres de protección
 
-![](https://raw.githubusercontent.com/LLamasDev/hacker-blog/master/assets/bash-logo.png)
+![](../assets/bash-logo.png)
 
 
 ### [](#header-3)Comillas dobles "

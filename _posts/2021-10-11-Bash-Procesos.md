@@ -5,7 +5,7 @@ published: true
 
 ### [](#header-1)Arrancar, parar y ver estado de procesos en GNU/Linux
 
-![](https://raw.githubusercontent.com/LLamasDev/hacker-blog/master/assets/bash-logo.png)
+![](../assets/bash-logo.png)
 
 
 ### [](#header-3)Posibles errores al ejecutar el script
