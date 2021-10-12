@@ -10,7 +10,7 @@ published: true
 
 ### [](#header-3)Comillas dobles "
 
-La protección es simple, eliminan el significado de todos los caracteres especiales del shell excepto <mark>**$**</mark>, <mark>**$()**</mark>, <mark>**\\**</mark> y a sí mismas.
+La protección es simple, eliminan el significado de todos los caracteres especiales del shell excepto <mark>$</mark>, <mark>$()</mark>, <mark>\\</mark> y a sí mismas.
 ```
 echo "Hola, estoy en $(pwd)"
 Hola, estoy en /
