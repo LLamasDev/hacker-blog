@@ -167,19 +167,19 @@ Miramos que esté arrancado, si lo está tenemos que sacar el **PID** del proces
 ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}'
 ```
 Lo nuevo en este caso sería:  
-**awk '{print $2}'** con lo que sacamos la segunda columna que es el PID
+**awk '{print $2}'** con lo que sacamos la segunda columna que es el PID.
 
 Ahora tenemos que matar el proceso:
 ```
 kill -9 $pid
 ```
 
-Ahora sacamos el **ID** del **screen**
+Ahora sacamos el **ID** del **screen**:
 ```
 screen -ls | grep -i $primer_ag | cut -d'.' -f1
 ```
-Lo nuevo sería:
-**cut -d'.' -f1** sacar el ID que sale en pantalla **ID.NOMBRE** por lo cual separamos el ID por el punto tomando el primer campo
+Lo nuevo sería:  
+**cut -d'.' -f1** sacar el ID que sale en pantalla **ID.NOMBRE** por lo cual separamos el ID por el punto tomando el primer campo.
 
 Ya solo queda cerrar el **screen** de la siguiente manera:
 ```
