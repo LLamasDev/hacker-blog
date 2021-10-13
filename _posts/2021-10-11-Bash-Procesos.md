@@ -114,15 +114,15 @@ find /bot/ -type f -name "$primer_ag*" 2>/dev/null
 ```
 Usaremos **find** y lo tenemos alojado en la ruta **/bot/**.  
 **-type f** para buscar solo ficheros y no directorios por si tienen el mismo nombre.  
-**-name "$primer_ag*"** buscamos con el nombre del primer argumento pasado y el ***** para indicar que detrás puede tener cualquier cosa.  
-**2>/dev/null** Esto redirecciona la salida estándar de errores (stderr), al dispositivo nulo (/dev/null).
+**-name "$primer_ag\*"** buscamos con el nombre del primer argumento pasado y el ***** para indicar que detrás puede tener cualquier cosa.  
+**2>/dev/null** Esto redirecciona la salida estándar de errores (stderr), al dispositivo nulo (/dev/null).  
 
 Con esto ya tendríamos la ruta del archivo deseado, ya solo falta arrancadlo con **screen** por si luego queremos volver a esa ventana:
 ```
 screen -S $primer_ag -d -m bash -c "python3 $ruta"
 ```
-**screen -S $primer_ag** Creamos la ventana con el nombre del argumento dado.
-**-d -m bash -c "python3 $ruta"** Despues de la ventana ejecutamos en Python 3 el archivo deseado obtenido en la ruta.
+**screen -S $primer_ag** Creamos la ventana con el nombre del argumento dado.  
+**-d -m bash -c "python3 $ruta"** Despues de la ventana ejecutamos en Python 3 el archivo deseado obtenido en la ruta.  
 
 ### [](#header-5)¿Posibles mejoras?  
 Controlar si el fichero no existe, pero siempre indicaremos los ficheros sabiendo que ya existen.  
