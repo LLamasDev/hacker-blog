@@ -52,7 +52,7 @@ Con el **ps** vemos los procesos corriendo:
 ps -ef
 ```
 
-Con el **grep** filtramos por la palabra pasada, lo que buscamos es un archivo python que se esta ejecutando por lo que añadimos .py:  
+Con el **grep** filtramos por la palabra pasada, lo que buscamos es un archivo Python que se está ejecutando por lo que añadimos .py:  
 **-i** no hace caso de si las letras son mayúsculas o minúsculas ni en el patrón ni en los ficheros de entrada.
 ```
 grep -i $primer_ag.py
@@ -76,8 +76,8 @@ Y para contarlos usaremos **wc**:
 wc -l
 ```
 
-Y con el **if**
-  
+Y con el **if** comparo que sea igual que 1, lo cual significa que el proceso estaría corriendo, y si no es 1 no está corriendo ya que solo puede estar corriendo o no, [todo esto lo explico aquí](./2021-10-13-Bash-Comparaciones.md).
+
 ### [](#header-3)Arrancar proceso
 
 ```
@@ -104,3 +104,21 @@ function funcion() {
 
 funcion
 ```
+
+En este caso vemos que este arrancado, si lo está no hacemos nada, si no está arrancado lo tenemos que arrancar, primero buscamos la ruta donde está, en nuestro caso:
+```
+find /bot/ -type f -name "$primer_ag*" 2>/dev/null
+```
+Usaremos **find** y lo tenemos alojado en la ruta **/bot/**.  
+**-type f** para buscar solo ficheros y no directorios por si tienen el mismo nombre.  
+**-name "$primer_ag*"** buscamos con el nombre del primer argumento pasado y el ***** para indicar que detrás puede tener cualquier cosa.  
+**2>/dev/null** Esto redirecciona la salida estándar de errores (stderr), al dispositvo nulo (/dev/null).
+
+Con esto ya tendríamos la ruta del archivo deseado, ya solo falta arrancalo con screen por si luego queremos volver a esa ventana:
+```
+screen -S $primer_ag -d -m bash -c "python3 $ruta"
+```
+**screen -S $primer_ag** Creamos la ventana con el nombre del argumento dado.
+**-d -m bash -c "python3 $ruta"** Despues de la ventana ejecutamos en Python 3 el archivo deseado obtenido en la ruta.
+
+¿Posibles mejoras? controlar si el fichero no existe, pero siempre indicaremos los ficheros sabiendo que ya existen.
