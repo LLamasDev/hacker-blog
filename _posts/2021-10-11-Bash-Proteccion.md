@@ -5,7 +5,6 @@ published: true
 
 ![](../assets/bash-logo.png)
 
-
 ### [](#header-1)Comillas dobles "
 
 La protección es simple, eliminan el significado de todos los caracteres especiales del shell excepto <mark>$</mark>, <mark>$()</mark>, <mark>\\</mark> y a sí mismas.
