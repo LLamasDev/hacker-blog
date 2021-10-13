@@ -123,7 +123,7 @@ screen -S $primer_ag -d -m bash -c "python3 $ruta"
 
 ### [](#header-4)¿Posibles mejoras?  
 Controlar si el fichero no existe, pero siempre indicaremos los ficheros sabiendo que ya existen.  
-Si quieres controlar que algo siempre esté arrancado y controlar por si se reinicia el servidor (ya que lo tenemos todo localmente y no por VPS), lo haríamos de la siguiente forma:
+Si quieres controlar que algo siempre esté arrancado y controlar por si se reinicia el servidor (ya que lo tenemos todo localmente y no por VPS), lo haríamos de la siguiente forma:  
 En el crontab ponemos el arranque en el reinicio, en caso de bash:
 ```
 @reboot         llamas  /bin/bash /bot/admin/start.sh ALGO
