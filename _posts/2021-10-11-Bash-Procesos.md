@@ -121,7 +121,7 @@ screen -S $primer_ag -d -m bash -c "python3 $ruta"
 **screen -S $primer_ag** Creamos la ventana con el nombre del argumento dado.
 **-d -m bash -c "python3 $ruta"** Despues de la ventana ejecutamos en Python 3 el archivo deseado obtenido en la ruta.
 
-### [](#header-4)¿Posibles mejoras?  
+### [](#header-5)¿Posibles mejoras?  
 Controlar si el fichero no existe, pero siempre indicaremos los ficheros sabiendo que ya existen.  
 Si quieres controlar que algo siempre esté arrancado y controlar por si se reinicia el servidor (ya que lo tenemos todo localmente y no por VPS), lo haríamos de la siguiente forma:  
 En el crontab ponemos el arranque en el reinicio, en caso de bash:
@@ -166,7 +166,7 @@ Miramos que esté arrancado, si lo está tenemos que sacar el **PID** del proces
 ```
 ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}'
 ```
-Lo nuevo en este caso sería:
+Lo nuevo en este caso sería:  
 **awk '{print $2}'** con lo que sacamos la segunda columna que es el PID
 
 Ahora tenemos que matar el proceso:
