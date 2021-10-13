@@ -1,4 +1,4 @@
-header-1---
+---
 title: Arrancar, parar y ver estado de procesos en GNU/Linux
 published: true
 ---
