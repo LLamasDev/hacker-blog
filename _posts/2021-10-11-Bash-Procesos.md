@@ -114,7 +114,7 @@ find /bot/ -type f -name "$primer_ag*" 2>/dev/null
 ```
 Usaremos **find** y lo tenemos alojado en la ruta **/bot/**.  
 **-type f** para buscar solo ficheros y no directorios por si tienen el mismo nombre.  
-**-name "$primer_ag\*"** buscamos con el nombre del primer argumento pasado y el ***** para indicar que detrás puede tener cualquier cosa.  
+**-name "$primer_ag\*"** buscamos con el nombre del primer argumento pasado y el **\*** para indicar que detrás puede tener cualquier cosa.  
 **2>/dev/null** Esto redirecciona la salida estándar de errores (stderr), al dispositivo nulo (/dev/null).  
 
 Con esto ya tendríamos la ruta del archivo deseado, ya solo falta arrancadlo con **screen** por si luego queremos volver a esa ventana:
