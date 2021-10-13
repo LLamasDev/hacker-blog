@@ -114,11 +114,74 @@ Usaremos **find** y lo tenemos alojado en la ruta **/bot/**.
 **-name "$primer_ag*"** buscamos con el nombre del primer argumento pasado y el ***** para indicar que detrás puede tener cualquier cosa.  
 **2>/dev/null** Esto redirecciona la salida estándar de errores (stderr), al dispositivo nulo (/dev/null).
 
-Con esto ya tendríamos la ruta del archivo deseado, ya solo falta arrancadlo con screen por si luego queremos volver a esa ventana:
+Con esto ya tendríamos la ruta del archivo deseado, ya solo falta arrancadlo con **screen** por si luego queremos volver a esa ventana:
 ```
 screen -S $primer_ag -d -m bash -c "python3 $ruta"
 ```
 **screen -S $primer_ag** Creamos la ventana con el nombre del argumento dado.
 **-d -m bash -c "python3 $ruta"** Despues de la ventana ejecutamos en Python 3 el archivo deseado obtenido en la ruta.
 
-¿Posibles mejoras? controlar si el fichero no existe, pero siempre indicaremos los ficheros sabiendo que ya existen.
+### [](#header-4)¿Posibles mejoras?  
+Controlar si el fichero no existe, pero siempre indicaremos los ficheros sabiendo que ya existen.  
+Si quieres controlar que algo siempre esté arrancado y controlar por si se reinicia el servidor (ya que lo tenemos todo localmente y no por VPS), lo haríamos de la siguiente forma:
+En el crontab ponemos el arranque en el reinicio, en caso de bash:
+```
+@reboot         llamas  /bin/bash /bot/admin/start.sh ALGO
+```
+En caso de Python
+```
+@reboot         llamas  /usr/bin/python3 /bot/ALGO.py
+```
+
+### [](#header-3)Parar proceso
+
+```
+#!/bin/bash
+
+primer_ag=$1 # Primer argumento
+
+function funcion() {
+  { # try
+    proceso=$(ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | wc -l)
+
+    if [ $proceso -eq 1 ]; then # Si el contador del proceso es 1 significa que esta corriendo
+      pid=$(ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}') # Saco el pid del proceso
+      matar_pid=$(kill -9 $pid) # Mato el pid
+      screen_id=$(screen -ls | grep -i $primer_ag | sed -n '2 p' | cut -d'.' -f1) # Saco el id del screen
+      matar_screen=$(screen -XS $screen_id quit) # Mato el screen del proceso
+
+      return 'Proceso matado'
+    else # El proceso no es 1 significa que no esta corriendo, ya que solo puede estar arrancado una vez
+      return 'El proceso no estaba corriendo, saliendo de la parada'
+    fi
+  } || { # catch
+    return 'Error al matar el proceso'
+  }
+}
+
+funcion
+```
+
+Miramos que esté arrancado, si lo está tenemos que sacar el **PID** del proceso
+```
+ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}'
+```
+Lo nuevo en este caso sería:
+**awk '{print $2}'** con lo que sacamos la segunda columna que es el PID
+
+Ahora tenemos que matar el proceso:
+```
+kill -9 $pid
+```
+
+Ahora sacamos el **ID** del **screen**
+```
+screen -ls | grep -i $primer_ag | cut -d'.' -f1
+```
+Lo nuevo sería:
+**cut -d'.' -f1** sacar el ID que sale en pantalla **ID.NOMBRE** por lo cual separamos el ID por el punto tomando el primer campo
+
+Ya solo queda cerrar el **screen** de la siguiente manera:
+```
+screen -XS $screen_id quit
+```
