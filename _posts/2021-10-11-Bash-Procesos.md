@@ -47,6 +47,11 @@ Para tomar el primer argumento que se le pase al script usamos:
 primer_ag=$1
 ```
 
+Para ver si el proceso está corriendo:
+```
+ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | wc -l
+```
+
 Con el **ps** vemos los procesos corriendo:
 ```
 ps -ef
@@ -128,7 +133,7 @@ En el crontab ponemos el arranque en el reinicio, en caso de bash:
 ```
 @reboot         llamas  /bin/bash /bot/admin/start.sh ALGO
 ```
-En caso de Python
+En caso de Python:
 ```
 @reboot         llamas  /usr/bin/python3 /bot/ALGO.py
 ```
@@ -162,7 +167,7 @@ function funcion() {
 funcion
 ```
 
-Miramos que esté arrancado, si lo está tenemos que sacar el **PID** del proceso
+Miramos que esté arrancado, si lo está tenemos que sacar el **PID** del proceso:
 ```
 ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}'
 ```
