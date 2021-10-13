@@ -3,13 +3,11 @@ title: Comparaciones en Bash
 published: true
 ---
 
-### [](#header-1)Comparaciones en Bash
-
 ![](../assets/bash-logo.png)
 
 En bash hay diferentes comparadores según lo que queramos comparar:
 
-### [](#header-3)Comparación de enteros
+### [](#header-1)Comparación de enteros
 
 ```
 #!/bin/bash
@@ -39,7 +37,7 @@ if [ "$a" -le "$b" ]; then
 fi
 ```
 
-### [](#header-3)Comparación de textos
+### [](#header-1)Comparación de textos
 
 ```
 #!/bin/bash
@@ -73,7 +71,7 @@ if [ -n "$a" ]; then
 fi
 ```
 
-### [](#header-3)Comparaciones sobre Ficheros
+### [](#header-1)Comparaciones sobre Ficheros
 
 ```
 #!/bin/bash

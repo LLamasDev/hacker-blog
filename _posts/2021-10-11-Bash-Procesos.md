@@ -1,13 +1,11 @@
----
+header-1---
 title: Arrancar, parar y ver estado de procesos en GNU/Linux
 published: true
 ---
 
-### [](#header-1)Arrancar, parar y ver estado de procesos en GNU/Linux
-
 ![](../assets/bash-logo.png)
 
-### [](#header-3)Posibles errores al ejecutar el script
+### [](#header-1)Posibles errores al ejecutar el script
 
 Convierte los saltos de línea de formato DOS a UNIX.  
 **sed** es un potente editor de flujo de texto. Podemos hacer insertar, borrar, buscar y reemplazar.  
@@ -17,7 +15,7 @@ Convierte los saltos de línea de formato DOS a UNIX.
 sed -i -e 's/\r$//' ALGO.sh
 ```
 
-### [](#header-3)Ver si esta corriendo el proceso:
+### [](#header-1)Ver si esta corriendo el proceso:
 
 ```
 #!/bin/bash
@@ -83,7 +81,7 @@ wc -l
 
 Y con el **if** comparo que sea igual que 1, lo cual significa que el proceso estaría corriendo, y si no es 1 no está corriendo, ya que solo puede estar corriendo o no, [todo esto lo explico aquí](./Bash-Comparaciones).
 
-### [](#header-3)Arrancar proceso
+### [](#header-1)Arrancar proceso
 
 ```
 #!/bin/bash
