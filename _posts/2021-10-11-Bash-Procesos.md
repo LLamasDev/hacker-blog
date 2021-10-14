@@ -24,16 +24,15 @@ primer_ag=$1 # Primer argumento
 
 function funcion() {
   { # try
-    proceso=$(ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | wc -l)
+    proceso=$(ps -ef | grep -i $primer_ag.py | grep -iv "screen\|grep\|networkd" | wc -l)
 
     if [ $proceso -eq 1 ]; then # Si el contador del proceso es 1 significa que esta corriendo
-      return 'El proceso esta corriendo'
+      echo 'El proceso esta corriendo'
     else # El proceso no es 1 significa que no esta corriendo, ya que solo puede estar arrancado una vez
-      return 'El proceso no estaba corriendo'
+      echo 'El proceso no esta corriendo'
     fi
-      return $index
   } || { # catch
-    return 'El proceso esta en estado anomalo'
+    echo 'El proceso esta en estado anomalo'
   }
 }
 
@@ -47,7 +46,7 @@ primer_ag=$1
 
 Para ver si el proceso está corriendo:
 ```
-ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | wc -l
+ps -ef | grep -i $primer_ag.py | grep -iv "screen\|grep\|networkd" | wc -l
 ```
 
 Con el **ps** vemos los procesos corriendo:
@@ -68,9 +67,10 @@ grep --color=auto -i python
 ```
 
 Por lo cual en el filtro mostraremos todo menos lo que queremos, en nuestro caso no queremos ver nada de ventanas (**screen**) ni el **grep** y lo añadimos separándolos con **\\|**, también se puede usar **|**, pero si se añade **-E** al **grep**:  
-**-v** filtra por todo menos por lo indicado a continuación.
+**-v** filtra por todo menos por lo indicado a continuación.  
+**-i** no hace caso de si las letras son mayúsculas o minúsculas ni en el patrón ni en los ficheros de entrada.
 ```
-grep -v "SCREEN\|grep"
+grep -iv "screen\|grep\|networkd"
 ```
 
 Y para contarlos usaremos **wc**:  
@@ -90,18 +90,18 @@ primer_ag=$1 # Primer argumento
 
 function funcion() {
   { # try
-    proceso=$(ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | wc -l)
+    proceso=$(ps -ef | grep -i $primer_ag.py | grep -iv "screen\|grep\|networkd" | wc -l)
 
     if [ $proceso -eq 1 ]; then # Si el contador del proceso es 1 significa que esta corriendo
-      return 'Proceso ya estaba arrancado, saliendo del arranque'
+      echo 'Proceso ya estaba arrancado, saliendo del arranque'
     else # El proceso no es 1 significa que no esta corriendo, ya que solo puede estar arrancado una vez
       ruta=$(find /bot/ -type f -name "$primer_ag*" 2>/dev/null) # Saco la ruta del archivo que siempre estan en bot
       screen_proceso=$(screen -S $primer_ag -d -m bash -c "python3 $ruta") # Ejecuto el archivo Python en una screen
 
-      return 'Proceso arrancado'
+      echo 'Proceso arrancado'
     fi
   } || { # catch
-    return 'Error al arrancar el proceso'
+    echo 'Error al arrancar el proceso'
   }
 }
 
@@ -145,20 +145,20 @@ primer_ag=$1 # Primer argumento
 
 function funcion() {
   { # try
-    proceso=$(ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | wc -l)
+    proceso=$(ps -ef | grep -i $primer_ag.py | grep -iv "screen\|grep\|networkd" | wc -l)
 
     if [ $proceso -eq 1 ]; then # Si el contador del proceso es 1 significa que esta corriendo
-      pid=$(ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}') # Saco el pid del proceso
+      pid=$(ps -ef | grep -i $primer_ag.py | grep -iv "screen\|grep\|networkd" | awk '{print $2}') # Saco el pid del proceso
       matar_pid=$(kill -9 $pid) # Mato el pid
-      screen_id=$(screen -ls | grep -i $primer_ag | sed -n '2 p' | cut -d'.' -f1) # Saco el id del screen
+      screen_id=$(screen -ls | grep -i $primer_ag | cut -d'.' -f1) # Saco el id del screen
       matar_screen=$(screen -XS $screen_id quit) # Mato el screen del proceso
 
-      return 'Proceso matado'
+      echo 'Proceso matado'
     else # El proceso no es 1 significa que no esta corriendo, ya que solo puede estar arrancado una vez
-      return 'El proceso no estaba corriendo, saliendo de la parada'
+      echo 'El proceso no esta corriendo, saliendo de la parada'
     fi
   } || { # catch
-    return 'Error al matar el proceso'
+    echo 'Error al matar el proceso'
   }
 }
 
@@ -167,7 +167,7 @@ funcion
 
 Miramos que esté arrancado, si lo está tenemos que sacar el **PID** del proceso:
 ```
-ps -ef | grep -i $primer_ag.py | grep -v "SCREEN\|grep" | awk '{print $2}'
+ps -ef | grep -i $primer_ag.py | grep -iv "screen\|grep\|networkd" | awk '{print $2}'
 ```
 Lo nuevo en este caso sería:  
 **awk '{print $2}'** con lo que sacamos la segunda columna que es el PID.
